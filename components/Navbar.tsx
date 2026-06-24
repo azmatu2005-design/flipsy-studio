@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Logo } from "./Logo";
 
 const navLinks = [
@@ -12,23 +12,18 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <header
-      className={`navbar-blur fixed top-0 z-50 w-full border-b transition-all duration-300 ${
-        scrolled
-          ? "border-white/10 bg-black/90"
-          : "border-transparent bg-black/60"
-      }`}
+      className="navbar-glass fixed top-0 z-50 w-full transition-all duration-300"
+      style={{
+        background: "rgba(0,0,0,0.7)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(212,175,55,0.2)",
+        boxShadow: "0 4px 30px rgba(0,0,0,0.3)",
+      }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="shrink-0">
